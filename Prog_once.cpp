@@ -3,32 +3,15 @@
 #include <memory>
 //#include"Log.h"
 
-class Entity
+struct Vector
 {
-public:
-	void print()const { std::cout << "Hello!" << std::endl; }
-};
-
-class scoped
-{
-private:
-	Entity* m_obj;
-public:
-	scoped(Entity* entity)
-		:m_obj(entity)
-	{}
-	~scoped() {
-		delete m_obj;
-	}
-	Entity* operator->() {
-		return m_obj;
-	}
+	float x, y, z;
 };
 
 int main()
 {
-	scoped obj = new Entity();
-	obj->print();
+	int offset = (int)&((Vector*)nullptr)->y;
+	std::cout << offset << std::endl;
 
 	std::cin.get();
 }

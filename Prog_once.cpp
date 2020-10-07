@@ -4,36 +4,26 @@
 
 struct matrix
 {
-	float x, y, z;
+	float m_x, m_y, m_z;
+
+	matrix(float x, float y, float z)
+		:m_x(x), m_y(y), m_z(z)
+	{
+	}
+	matrix(const matrix& matt)
+		:m_x(matt.m_x), m_y(matt.m_y), m_z(matt.m_z)
+	{
+		std::cout << "Copied!" << std::endl;
+	}
 };
-
-std::ostream& operator<< (std::ostream& stream, const matrix& entity) {
-	stream << entity.x << ", " << entity.y << ", " << entity.z << ", ";
-	return stream;
-}
-
-void function(const std::vector<matrix> matat) {
-
-}
 
 int main()
 {
 	std::vector<matrix> matrixes;
-	matrixes.push_back({ 1, 2, 3 });
-	matrixes.push_back({ 4, 5, 6 });
-	function(matrixes);
-
-	for (int i = 0; i < matrixes.size(); i++)
-	{
-		std::cout << matrixes[i] << std::endl;
-	}
-
-	matrixes.erase(matrixes.end() - 1);
-
-	for (matrix& m : matrixes) {
-		std::cout << m << std::endl;
-	}
-
+	matrixes.reserve(3);
+	matrixes.emplace_back(1, 2, 3);
+	matrixes.emplace_back(4, 5, 6);
+	matrixes.emplace_back(7, 8, 9);
 
 	std::cin.get();
 }
